@@ -18,10 +18,12 @@ from django.urls import path
 from api.views import Home
 from api.views import Login
 from api.views import Register
+from api.views import Admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name ='index'),
+    path('', Home.as_view(), name ='home'),
+    path('dashboard/', Admin.as_view(), name ='admin'),
     path('login/', Login.as_view(), name ='login'),
     path('register/', Register.as_view(), name ='register')
 ]
