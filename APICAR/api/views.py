@@ -1,23 +1,22 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
+from django.shortcuts import render, redirect
+from .models import *
+from .forms import *
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 # Create your views here.
-class Home(APIView):
-    template_name = "Home/home.html"
-    def get(self,request):
-        return render(request,self.template_name)
+def home(request):
+    return render(request, 'Home/home.html')
 
-class Admin(APIView):
-    template_name = "Admin/admin.html"
-    def get(self,request):
-        return render(request,self.template_name)
-
-class Login(APIView):
-    template_name = "Authentication/login.html"
-    def get(self,request):
-        return render(request,self.template_name)
-
-class Register(APIView):
-    template_name = "Authentication/register.html"
-    def get(self,request):
-        return render(request,self.template_name)
+def register(request):
+ if request.method == 'POST':
+  form = UserRegisterForm(request.POST)
+  if form.is_valid():
+   form.save()
+   username = form.cleaned_data['username']
+   messages.success(request, 'Usuario {username} creado')
+   return redirect('login')
+ else:
+  form = UserRegisterForm()
+ context = { 'form' : form }
+ return render(request, 'Authentication/register.html', context)

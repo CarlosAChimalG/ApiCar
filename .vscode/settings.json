@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./APICAR/api"
+    ],
+    "python.analysis.typeCheckingMode": "basic"
+}

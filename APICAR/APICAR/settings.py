@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'api',
     'rest_framework',
+    'django_seed',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -139,3 +140,5 @@ EMAIL_HOST_PASSWORD = 'aesjxveaagxqcdxo'  # Tu contraseña de Gmail o una contra
 # Configuración adicional (opcional)
 DEFAULT_FROM_EMAIL = 'chimalcarlos261198@gmail.com'  # Dirección de correo predeterminada para enviar correos desde
 EMAIL_SUBJECT_PREFIX = '[APICAR] '  # Prefijo para el asunto de los correos electrónicos
+
+LOGIN_REDIRECT_URL = 'home'

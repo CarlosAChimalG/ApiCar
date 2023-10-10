@@ -15,13 +15,13 @@ class Gender(models.Model):
     class Meta:
         db_table = "genders"
 
-class User(models.Model):
+class Profile(models.Model):
     idUser = models.IntegerField(primary_key=True,db_column="idUser")
     nameUser = models.CharField(max_length=100,db_column="nameUser")
-    fk_Rol = models.ForeignKey(Rol,default=1,on_delete=models.CASCADE,db_column="fk_Rol")
-    fk_Gender = models.ForeignKey(Gender,default=1,on_delete=models.CASCADE,db_column="fk_Gender")
+    emailUser = models.EmailField(unique=True,db_column="emailUser")
+    passwordUser = models.CharField(max_length=255,db_column="passwordUser")
     class Meta:
-        db_table = "users"
+        db_table = "profiles"
 
 class Product(models.Model):
     idProduct = models.IntegerField(primary_key=True,db_column="idProduct")

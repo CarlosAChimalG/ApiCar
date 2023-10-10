@@ -1,29 +1,7 @@
-"""APICAR URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
-from api.views import Home
-from api.views import Login
-from api.views import Register
-from api.views import Admin
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name ='home'),
-    path('dashboard/', Admin.as_view(), name ='admin'),
-    path('login/', Login.as_view(), name ='login'),
-    path('register/', Register.as_view(), name ='register')
+    path('', include('api.urls')),
 ]
