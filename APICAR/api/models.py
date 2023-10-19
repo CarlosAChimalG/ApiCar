@@ -29,3 +29,19 @@ class Product(models.Model):
     priceProduct = models.FloatField(default=0,db_column="priceProduct")
     class Meta:
         db_table = "products"
+        
+class Question(models.Model):
+    idQuestion = models.IntegerField(primary_key=True,db_column="idQuestion")
+    nameQ = models.CharField(max_length=100,db_column="nameQ")
+    lastNameQ = models.CharField(max_length=100,db_column="lastNameQ")
+    emailQ = models.CharField(max_length=100,db_column="emailQ")
+    packageQ = models.CharField(max_length=100,db_column="packageQ")
+    personQ = models.CharField(max_length=100,db_column="personQ")
+    packagingQ = models.CharField(max_length=100,db_column="packagingQ")
+    reasonPurchaseQ = models.CharField(max_length=100,db_column="reasonPurchaseQ")
+    sendQ = models.CharField(max_length=100,db_column="sendQ")
+    markQ = models.CharField(max_length=100,db_column="markQ")
+    categoryQ = models.CharField(max_length=100,db_column="categoryQ")
+    articleQ = models.CharField(max_length=100,db_column="articleQ")
+    class Meta:
+        db_table = "questions"
