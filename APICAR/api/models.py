@@ -31,17 +31,17 @@ class Product(models.Model):
         db_table = "products"
         
 class Question(models.Model):
-    idQuestion = models.IntegerField(primary_key=True,db_column="idQuestion")
-    nameQ = models.CharField(max_length=100,db_column="nameQ")
-    lastNameQ = models.CharField(max_length=100,db_column="lastNameQ")
-    emailQ = models.CharField(max_length=100,db_column="emailQ")
-    packageQ = models.CharField(max_length=100,db_column="packageQ")
-    personQ = models.CharField(max_length=100,db_column="personQ")
-    packagingQ = models.CharField(max_length=100,db_column="packagingQ")
-    reasonPurchaseQ = models.CharField(max_length=100,db_column="reasonPurchaseQ")
-    sendQ = models.CharField(max_length=100,db_column="sendQ")
-    markQ = models.CharField(max_length=100,db_column="markQ")
-    categoryQ = models.CharField(max_length=100,db_column="categoryQ")
-    articleQ = models.CharField(max_length=100,db_column="articleQ")
+    id = models.IntegerField(primary_key=True,db_column="id")
+    name = models.CharField(max_length=100,db_column="name")
+    lastName = models.CharField(max_length=100,db_column="lastName")
+    email = models.CharField(max_length=100,db_column="email")
+    package = models.CharField(max_length=100,db_column="package")
+    person = models.CharField(max_length=100,db_column="person")
+    packaging = models.CharField(max_length=100,db_column="packaging")
+    reasonPurchase = models.CharField(max_length=100,db_column="reason_purchase")
+    send = models.CharField(max_length=100,db_column="send")
+    mark = models.CharField(max_length=100,db_column="mark")
+    category = models.CharField(max_length=100,db_column="category")
+    article = models.CharField(max_length=100,db_column="article")
     class Meta:
         db_table = "questions"

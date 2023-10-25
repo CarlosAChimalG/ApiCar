@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': 'localhost',
         'PORT': 5432,
-        'NAME': 'django',
+        'NAME': 'mercadoupg',
         'USER': 'postgres',
         'PASSWORD': '1234',
     }
