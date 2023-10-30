@@ -4,6 +4,7 @@ from .forms import *
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.db.models import Count
 
 # Create your views here.
 def home(request):
@@ -25,7 +26,7 @@ def register(request):
         'password': request.POST['password1'],
    }
    html_content = render_to_string('Mail/registerMail.html', context)
-  #  send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_content)
+   send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_content)
    return redirect('login')
  else:
   form = UserRegisterForm()
@@ -33,59 +34,78 @@ def register(request):
  return render(request, 'Authentication/register.html', context)
 
 def dashboard_view(request):
-  packageGrande = Question.objects.filter(package="Grande").count()
-  packageMediano = Question.objects.filter(package="Mediano").count()
-  packagePequeño = Question.objects.filter(package="Pequeño").count()
+  packageLabels=[]
+  packageValues=[]
+  package = Question.objects.values('package').annotate(total=Count('package'))
+  for packageData in package:
+    packageLabels.append(packageData['package'])
+    packageValues.append(packageData['total'])
   
-  packagingBolsa = Question.objects.filter(packaging="En bolsa").count()
-  packagingCaja = Question.objects.filter(packaging="En Caja").count()
-  packagingPlastico = Question.objects.filter(packaging="En plástico").count()
+  packagingLabels=[]
+  packagingValues=[]
+  packaging = Question.objects.values('packaging').annotate(total=Count('packaging'))
+  for packagingData in packaging:
+    packagingLabels.append(packagingData['packaging'])
+    packagingValues.append(packagingData['total'])
   
-  personFamilia = Question.objects.filter(person="Para la familia").count()
-  personMismo = Question.objects.filter(person="Para si mismo").count()
-  personHogar = Question.objects.filter(person="Para el hogar").count()
+  personLabels=[]
+  personValues=[]
+  person = Question.objects.values('person').annotate(total=Count('person'))
+  for personData in person:
+    personLabels.append(personData['person'])
+    personValues.append(personData['total'])  
   
-  sendSi = Question.objects.filter(send="Si").count()
-  sendNo = Question.objects.filter(send="No").count()
+  sendLabels=[]
+  sendValues=[]
+  send = Question.objects.values('send').annotate(total=Count('send'))
+  for sendData in send:
+    sendLabels.append(sendData['send'])
+    sendValues.append(sendData['total'])
   
-  categoryEyT = Question.objects.filter(category="Electrónicos y tecnología").count()
-  categoryJyE = Question.objects.filter(category="Juguetes y entretenimiento").count()
-  categoryA = Question.objects.filter(category="Alimentos").count()
-  categoryAH = Question.objects.filter(category="Artículos para el hogar").count()
-  categoryR = Question.objects.filter(category="Ropa").count()
-  categoryHC = Question.objects.filter(category="Higiene y cuidado personal").count()
+  categoryLabels=[]
+  categoryValues=[]
+  category = Question.objects.values('category').annotate(total=Count('category'))
+  for categoryData in category:
+    categoryLabels.append(categoryData['category'])
+    categoryValues.append(categoryData['total'])
   
-  reason_purchaseHM = Question.objects.filter(reasonPurchase="Historia de la marca").count()
-  reason_purchaseRM = Question.objects.filter(reasonPurchase="Reputación de la marca").count()
-  reason_purchaseC = Question.objects.filter(reasonPurchase="Calidad").count()
-  reason_purchaseP = Question.objects.filter(reasonPurchase="Precio").count()
+  reasonPurchaseLabels=[]
+  reasonPurchaseValues=[]
+  reasonPurchase = Question.objects.values('reasonPurchase').annotate(total=Count('reasonPurchase'))
+  for reasonPurchaseData in reasonPurchase:
+    reasonPurchaseLabels.append(reasonPurchaseData['reasonPurchase'])
+    reasonPurchaseValues.append(reasonPurchaseData['total'])
+    
+  markLabels=[]
+  markValues=[]
+  mark = Question.objects.values('mark').annotate(total=Count('mark'))
+  for markData in mark:
+    markLabels.append(markData['mark'])
+    markValues.append(markData['total'])
   
-  markNike = Question.objects.filter(mark="Nike").count()
-  markApple = Question.objects.filter(mark="Apple").count()
-  markSamsung = Question.objects.filter(mark="Samsung").count()
-  markBimbo = Question.objects.filter(mark="Bimbo").count()
-  markMcDonald = Question.objects.filter(mark="McDonald's").count()
-  
-  articleVU = Question.objects.filter(article="Varios usos").count()
-  articleUD = Question.objects.filter(article="Un único y desechable").count()
-  articleUND = Question.objects.filter(article="Un único uso y no desechable").count()
+  articleLabels=[]
+  articleValues=[]
+  article = Question.objects.values('article').annotate(total=Count('article'))
+  for articleData in article:
+    articleLabels.append(articleData['article'])
+    articleValues.append(articleData['total'])
   
   context = {
-        'package_labels': ['Grande', 'Mediano', 'Pequeño'],
-        'package_values' : [packageGrande, packageMediano, packagePequeño],
-        'packaging_labels': ['En bolsa', 'En Caja', 'En plástico'],
-        'packaging_values' : [packagingBolsa, packagingCaja, packagingPlastico],
-        'person_labels': ['Para la familia', 'Para si mismo', 'Para el hogar'],
-        'person_values' : [personFamilia, personMismo, personHogar],
-        'send_labels': ['Si', 'No'],
-        'send_values' : [sendSi, sendNo],
-        'category_labels': ['Electrónicos y tecnología', 'Juguetes y entretenimiento', 'Alimentos', 'Artículos para el hogar', 'Ropa', 'Higiene y cuidado personal'],
-        'category_values' : [categoryEyT, categoryJyE, categoryA, categoryAH, categoryR, categoryHC],
-        'reason_purchase_labels': ['Historia de la marca', 'Reputación de la marca', 'Calidad', 'Precio'],
-        'reason_purchase_values' : [reason_purchaseHM, reason_purchaseRM, reason_purchaseC, reason_purchaseP],
-        'mark_labels': ['Nike', 'Apple', 'Samsung', 'Bimbo', "McDonald's"],
-        'mark_values' : [markNike, markApple, markSamsung, markBimbo, markMcDonald],
-        'article_labels': ['Varios usos', 'Un único y desechable', 'Un único uso y no desechable'],
-        'article_values' : [articleVU, articleUD, articleUND],
+        'package_labels': packageLabels,
+        'package_values' : packageValues,
+        'packaging_labels': packagingLabels,
+        'packaging_values' : packagingValues,
+        'person_labels': personLabels,
+        'person_values' : personValues,
+        'send_labels': sendLabels,
+        'send_values' : sendValues,
+        'category_labels': categoryLabels,
+        'category_values' : categoryValues,
+        'reason_purchase_labels': reasonPurchaseLabels,
+        'reason_purchase_values' : reasonPurchaseValues,
+        'mark_labels': markLabels,
+        'mark_values' : markValues,
+        'article_labels': articleLabels,
+        'article_values' : articleValues,
    }
   return render(request, 'Admin/dashboard.html',context)
