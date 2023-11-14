@@ -24,3 +24,30 @@
     .bg-login {
         background-image: url("/static/img/familia.webp");
     }
+
+    .w-sidebar {
+        width: 17vw !important;
+    }
+    
+    .w-content {
+        width: 82vw !important;
+    }
+
+    .h-sidebar {
+        height: 100vh !important;
+    }
+
+    .circle {
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+    }
+
+    .scroll-div{
+        margin-bottom: 0; 
+        overflow-x: hidden; 
+        overflow-y: auto; 
+        max-height: 85vh; 
+        white-space: nowrap;
+    }

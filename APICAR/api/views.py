@@ -9,6 +9,14 @@ from django.db.models import Count
 # Create your views here.
 def home(request):
     return render(request, 'Home/home.html')
+def prueba1(request):
+    return render(request, 'Admin/dashboard.html')
+  
+def prueba2(request):
+    return render(request, 'Common/mainAdmin.html')
+  
+def mainAdmin(request):
+    return render(request, 'Common/mainAdmin.html')
 
 def register(request):
  if request.method == 'POST':
