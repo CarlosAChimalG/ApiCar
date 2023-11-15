@@ -87,9 +87,6 @@ DATABASES = {
     }
 }
 
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -148,3 +145,7 @@ DEFAULT_FROM_EMAIL = 'chimalcarlos261198@gmail.com'  # Dirección de correo pred
 EMAIL_SUBJECT_PREFIX = '[APICAR] '  # Prefijo para el asunto de los correos electrónicos
 
 LOGIN_REDIRECT_URL = 'home'
+
+
+STRIPE_PUBLIC_KEY = 'pk_test_51OCU7RDU5FTAbIUafQkvL9dK8piJ8KGMzYL66TcgbAEExt56cPDiOK1iwFRt3Ni2qYPSaQp2DCDLsp2RtSzyll0000UnP6YAX9'
+STRIPE_SECRET_KEY = 'sk_test_51OCU7RDU5FTAbIUaYkj0RECvRnTN7wKLkrQKfKq0HZpY2o8NAnCkqjG0U4bbbzlQ03K22EnCJy7x4RSs6SlSHgu400TM2wNEVe'

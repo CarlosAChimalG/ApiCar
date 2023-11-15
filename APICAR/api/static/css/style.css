@@ -37,6 +37,10 @@
         height: 100vh !important;
     }
 
+    .h-content{
+        height: 82vh !important;
+    }
+
     .circle {
         background-repeat: no-repeat;
         background-position: 50%;
@@ -48,6 +52,14 @@
         margin-bottom: 0; 
         overflow-x: hidden; 
         overflow-y: auto; 
-        max-height: 85vh; 
+        height: 85vh; 
         white-space: nowrap;
+    }
+
+    .b-radius{
+        border-radius: 20px;
+    }
+
+    .text-decoration-none{
+        text-decoration: none;
     }

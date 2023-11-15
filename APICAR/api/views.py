@@ -2,9 +2,14 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.core.mail import send_mail
-from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.db.models import Count
+from django.conf import settings
+from stripe.error import StripeError
+
+import stripe
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
 def home(request):
@@ -117,3 +122,37 @@ def dashboard_view(request):
         'article_values' : articleValues,
    }
   return render(request, 'Admin/dashboard.html',context)
+
+def seller(request):
+    return render(request, 'Admin/seller.html')
+
+def list_products(request):
+    try:
+        products = stripe.Product.list()
+        productsList = []
+        for product in products['data']:
+            price = stripe.Price.retrieve(product["default_price"]) # type: ignore
+            productsList.append({
+                'name': product["name"], # type: ignore
+                'description': product["description"], # type: ignore
+                'price': price['unit_amount'] / 100.0,
+            })
+
+        context = {
+            'products': productsList
+        }
+
+        return render(request, 'Common/products.html', context)
+    except StripeError as e:
+        print(f"Error de Stripe: {str(e)}")
+        return render(request, 'Common/products.html')
+           
+def payments(request):
+    if request.method == 'POST':
+      try:
+          create = stripe.PaymentIntent.create(amount=5000,currency="mxn",payment_method="pm_card_visa",)
+          print(create)
+      except Exception as e:
+          return render(request, 'Common/payment_result.html', {'success': False, 'error': str(e)})
+      return render(request, 'Common/payment_result.html', {'success': True})
+    return render(request, 'Common/payment.html')

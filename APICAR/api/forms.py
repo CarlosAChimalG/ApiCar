@@ -12,3 +12,9 @@ class UserRegisterForm(UserCreationForm):
 		model = UserAuth
 		fields = ['username', 'email', 'password1', 'password2']
 		help_texts = {k:"" for k in fields }
+
+class PaymentForm(forms.Form):
+    card_number = forms.CharField(label='Número de tarjeta', widget=forms.TextInput(attrs={'placeholder': '4242 4242 4242 4242'}))
+    exp_month = forms.CharField(label='Mes de expiración', widget=forms.TextInput(attrs={'placeholder': 'MM'}))
+    exp_year = forms.CharField(label='Año de expiración', widget=forms.TextInput(attrs={'placeholder': 'YYYY'}))
+    cvc = forms.CharField(label='CVC', widget=forms.TextInput(attrs={'placeholder': '123'}))
