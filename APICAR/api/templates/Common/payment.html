@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  Realizar pago 
+  Realizar pago
 {% endblock %}
 
 {% block head %}
@@ -14,12 +14,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="d-flex">
-  <form action="{% url 'payments' %}" method="post" id="payment-form">
-    {% csrf_token %}
-    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 me-2">Realizar pago</button>
-  </form>
-</div>
+  <div class="d-flex">
+    <form action="{% url 'payments' %}" method="post" id="payment-form">
+      {% csrf_token %}
+      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 me-2">Realizar pago</button>
+    </form>
+  </div>
 {% endblock %}
 
 {% block scripts %}

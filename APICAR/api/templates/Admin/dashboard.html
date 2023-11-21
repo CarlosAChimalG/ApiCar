@@ -1,63 +1,65 @@
 {% extends 'Common/mainAdmin.html' %}
 {% load static %}
-{% block title %}Dashboard{% endblock  %}
+{% block title %}
+  Dashboard
+{% endblock %}
 {% block head %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-{% endblock  %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
 {% block content_tilte %}
-<h1>Dashboard</h1>
-{% endblock  %}
+  <h1>Dashboard</h1>
+{% endblock %}
 {% block content %}
-<div class="row p-0 m-0">
-  <div class="col-lg-4 col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="package" width="400" height="400"></canvas>
+  <div class="row p-0 m-0">
+    <div class="col-lg-4 col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="package" width="400" height="400"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="person" width="400" height="400"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="packaging" width="400" height="400"></canvas>
+      </div>
     </div>
   </div>
-  <div class="col-lg-4 col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="person" width="400" height="400"></canvas>
+  <div class="row p-0 m-0">
+    <div class="col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="send" width="400" height="400"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="category" width="400" height="400"></canvas>
+      </div>
     </div>
   </div>
-  <div class="col-lg-4 col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="packaging" width="400" height="400"></canvas>
+  <div class="row p-0 m-0">
+    <div class="col-lg-4 col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="reason_purchase" width="400" height="400"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="mark" width="400" height="400"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-12 p-5">
+      <div class="container" style="height: auto; width: auto;">
+        <canvas id="article" width="400" height="400"></canvas>
+      </div>
     </div>
   </div>
-</div>
-<div class="row p-0 m-0">
-  <div class="col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="send" width="400" height="400"></canvas>
-    </div>
-  </div>
-  <div class="col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="category" width="400" height="400"></canvas>
-    </div>
-  </div>
-</div>
-<div class="row p-0 m-0">
-  <div class="col-lg-4 col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="reason_purchase" width="400" height="400"></canvas>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="mark" width="400" height="400"></canvas>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-6 col-12 p-5">
-    <div class="container" style="height: auto; width: auto;">
-      <canvas id="article" width="400" height="400"></canvas>
-    </div>
-  </div>
-</div> 
-{% endblock  %}
+{% endblock %}
 
 {% block scripts %}
-<script>
+  <script>
   var ctx1 = document.getElementById('package').getContext('2d')
   var package_labels = {arreglo: {{ package_labels|safe }}};
   var package_values = {arreglo: {{ package_values|safe }}};
@@ -195,4 +197,4 @@
   })
   
 </script>
-{% endblock  %}
+{% endblock %}

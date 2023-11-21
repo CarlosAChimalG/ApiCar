@@ -11,31 +11,42 @@
     <link rel="stylesheet" href="{% static 'css/mdb_uikit.css' %}" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Title{% endblock %}</title>
-    {% block head %}{% endblock  %}
+    <title>
+      {% block title %}
+        Title
+      {% endblock %}
+    </title>
+    {% block head %}
+    {% endblock %}
   </head>
   <body>
     <!-- Start view -->
     <div class="row p-0 m-0">
       <div class="content gradient-custom-2 w-sidebar h-sidebar p-2">
-        {% include "Admin/sidebar.html" %}
+        {% include 'Admin/sidebar.html' %}
       </div>
       <div class="w-content p-0 m-0">
-        <div class="pt-3 px-3">{% block content_tilte %}{% endblock  %}</div>
-        <div class="scroll-div px-3">
-          {% block content %}content{% endblock %}
+        <div class="pt-3 px-3">
+          {% block content_tilte %}
+          {% endblock %}
         </div>
-        <footer id="footer" class="d-flex justify-content-center pt-2"/>
+        <div class="scroll-div px-3">
+          {% block content %}
+            content
+          {% endblock %}
+        </div>
+        <footer id="footer" class="d-flex justify-content-center pt-2" />
       </div>
     </div>
     <!-- End view -->
-    
+
     <!-- Scripts -->
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+    {% endblock %}
     <script type="text/javascript">
-      copyright=new Date();
-      update=copyright.getFullYear();
-      document.getElementById("footer").innerHTML =("© 2023 - " + update + " " + "MercadoUPG");
+      copyright = new Date()
+      update = copyright.getFullYear()
+      document.getElementById('footer').innerHTML = '© 2023 - ' + update + ' ' + 'MercadoUPG'
     </script>
     <!-- MDB -->
     <script type="text/javascript" src="{% static 'js/mdb_uikit.js' %}"></script>
